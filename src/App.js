@@ -41,8 +41,6 @@ const App = () => {
 
     for (let row of newSquares) {
       for (let square of row) {
-        console.log('square.id ___', square.id)
-        console.log('updatedSquare.id', updatedSquare.id)
         if (square.id === updatedSquare.id && square.value === '') {
           square.value = player;
         }
@@ -68,7 +66,6 @@ const App = () => {
   const resetGame = () => {
     // Complete in Wave 4
   }
-
   return (
     <div className="App">
       <header className="App-header">
