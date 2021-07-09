@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-
+import imageToe from './toe-pic-1.jpg';
 import Board from './components/Board';
 
-const PLAYER_1 = '🦶';
+const PLAYER_1 = <img src={imageToe} alt="toe"></img>;
 const PLAYER_2 = '📌';
 
 const generateSquares = () => {
@@ -93,8 +93,11 @@ const App = () => {
   }
 
   const printWinner = () => {
+    if (winner === null) {
+      return (`Current Player: ${player}`)
+    }
     if (winner === 'x' || winner === 'o') {
-      return (`${winner}`)
+      return (`The Winner is ${winner}`)
     }
   }
 
@@ -107,8 +110,8 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>Winner is {printWinner()} </h2>
-        <button onClick={resetGame}>Reset Game</button>
+        <h2>{printWinner()} </h2>
+        <button className="reset-button" onClick={resetGame}>Reset Game</button>
       </header>
       <main>
         <Board squares={squares} onClickCallback={updateSquare} />
