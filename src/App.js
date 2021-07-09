@@ -30,8 +30,8 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  // initial state of player is PLAYER_1 ---> X
   const [player, setPlayer] = useState(PLAYER_1);
+  const [winner, setWinner] = useState('');
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -48,6 +48,7 @@ const App = () => {
     };
     setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
     setSquares(newSquares);
+    setWinner(checkForWinner());
   }
 
   const checkForWinner = () => {
@@ -61,6 +62,40 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+    // check vertically
+    for (let i = 0; i < 3; i++) {
+      if (squares[0][i].value === squares[1][i].value &&
+        squares[1][i].value === squares[2][i].value &&
+        squares[0][i].value !== '') {
+          return squares[0][i].value
+        }
+    }
+    // check horizontally
+    for (let i = 0; i < 3; i++) {
+      if (squares[i][0].value === squares[i][1].value &&
+        squares[i][1].value === squares[i][2].value &&
+        squares[i][0].value !== '') {
+          return squares[i][0].value
+        }
+    }
+    // check diagonally
+    if (squares[0][0].value === squares[1][1].value &&
+      squares[1][1].value === squares[2][2].value &&
+      squares[0][0].value !== '') {
+        return squares[0][0].value
+    }
+    if (squares[0][2].value === squares[1][1].value &&
+      squares[1][1].value === squares[2][0].value &&
+      squares[0][2].value !== '') {
+        return squares[0][2].value
+      }
+      return null;
+  }
+
+  const printWinner = () => {
+    if (winner === 'x' || winner === 'o') {
+      return (`${winner}`)
+    }
   }
 
   const resetGame = () => {
@@ -70,7 +105,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>The winner is ... {printWinner()} </h2>
         <button>Reset Game</button>
       </header>
       <main>
