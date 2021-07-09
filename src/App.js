@@ -93,8 +93,11 @@ const App = () => {
   }
 
   const printWinner = () => {
-    if (winner === 'x' || winner === 'o') {
-      return (`${winner}`)
+    if (winner == null) {
+      return `Current Player: ${player}`
+    }
+    if (winner === '🦶' || winner === '📌') {
+      return (`The winner is ${winner}`)
     }
   }
 
@@ -102,12 +105,13 @@ const App = () => {
     // Complete in Wave 4
     const emptyBoard = generateSquares();
     setSquares(emptyBoard);
+    setPlayer('')
   }
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>Winner is {printWinner()} </h2>
+        <h2>{printWinner()} </h2>
         <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
