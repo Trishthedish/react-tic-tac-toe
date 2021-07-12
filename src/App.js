@@ -105,7 +105,8 @@ const App = () => {
     // Complete in Wave 4
     const emptyBoard = generateSquares();
     setSquares(emptyBoard);
-    setPlayer('')
+    setPlayer(PLAYER_1)
+    setWinner('')
   }
   return (
     <div className="App">
