@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'x';
-const PLAYER_2 = 'o';
+const PLAYER_1 = '🦶';
+const PLAYER_2 = '📌';
 
 const generateSquares = () => {
   const squares = [];
@@ -96,7 +96,7 @@ const App = () => {
     if (winner == null) {
       return `Current Player: ${player}`
     }
-    if (winner === 'x' || winner === 'o') {
+    if (winner === PLAYER_1 || winner === PLAYER_2) {
       return (`Winner is ${winner}`)
     }
   }
